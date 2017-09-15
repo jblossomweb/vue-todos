@@ -1,7 +1,13 @@
 <template>
   <div id="app">
-    <todo-list v-bind:todos="todos"></todo-list>
-    <create-todo v-on:add-todo="addTodo"></create-todo>
+    <todo-list
+      v-bind:todos="todos"
+      v-on:complete-todo="completeTodo"
+      v-on:delete-todo="deleteTodo"
+    ></todo-list>
+    <create-todo
+      v-on:add-todo="addTodo"
+    ></create-todo>
   </div>
 </template>
 
@@ -30,6 +36,14 @@ export default {
         description,
         done: false,
       });
+    },
+    deleteTodo(todo) {
+      const todoIndex = this.todos.indexOf(todo);
+      this.todos.splice(todoIndex, 1);
+    },
+    completeTodo(todo) {
+      const todoIndex = this.todos.indexOf(todo);
+      this.todos[todoIndex].done = true;
     },
   },
 };
