@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <todo-list v-bind:todos="todos"></todo-list>
+    <create-todo v-on:add-todo="addTodo"></create-todo>
   </div>
 </template>
 
 <script>
 import TodoList from './components/TodoList';
+import CreateTodo from './components/CreateTodo';
 
 export default {
   name: 'app',
   components: {
     TodoList,
+    CreateTodo,
   },
   data() {
     return {
@@ -20,6 +23,14 @@ export default {
         { id: 3, done: true, description: 'Create todo API' },
       ],
     };
+  },
+  methods: {
+    addTodo(description) {
+      this.todos.push({
+        description,
+        done: false,
+      });
+    },
   },
 };
 </script>
@@ -32,5 +43,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+i.edit, i.trash {
+  cursor: pointer;
 }
 </style>
