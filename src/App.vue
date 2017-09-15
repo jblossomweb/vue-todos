@@ -47,4 +47,8 @@ export default {
 i.edit, i.trash {
   cursor: pointer;
 }
+.hidden {
+  position: absolute;
+  top: -99999999px;
+}
 </style>

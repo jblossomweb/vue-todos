@@ -2,6 +2,14 @@
   <div class='ui basic content center aligned segment'>
     <button class='ui basic button icon' v-on:click="openForm" v-show="!isCreating">
       <i class='plus icon'></i>
+      <input
+        class="hidden"
+        type="text"
+        v-focus="!isCreating"
+        ref="addButton"
+        v-on:keyup="keyUpAdd"
+        autofocus
+      >
     </button>
     <div class='ui centered card' v-show="isCreating">
       <div class='content'>
@@ -13,7 +21,7 @@
               type="text"
               ref="description"
               v-focus="isCreating"
-              v-on:keyup="keyUp"
+              v-on:keyup="keyUpInput"
             >
           </div>
           <div class='ui two button attached buttons'>
@@ -56,9 +64,14 @@ export default {
       }
       this.isCreating = false;
     },
-    keyUp(e) {
+    keyUpInput(e) {
       if (e.keyCode === 13) {
         this.sendForm();
+      }
+    },
+    keyUpAdd(e) {
+      if (e.keyCode === 13) {
+        this.openForm();
       }
     },
   },
