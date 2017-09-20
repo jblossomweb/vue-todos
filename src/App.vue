@@ -101,6 +101,17 @@ i.save {
   margin: auto;
   justify-content: center;
 }
+.ui.card {
+  transition: opacity .1s;
+}
+.ui.card.transition-fade-enter,
+.ui.card.transition-fade-leave-to {
+  opacity: 0;
+}
+.ui.card.transition-fade-leave,
+.ui.card.transition-fade-enter-to {
+  opacity: 1;
+}
 .hidden {
   position: absolute;
   top: -99999999px;
