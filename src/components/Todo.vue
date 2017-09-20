@@ -1,6 +1,6 @@
 <template>
   <transition name="transition-fade" :duration="100">
-    <div class='ui centered card'>
+    <div class='ui centered card transition-fade'>
       <div class="content" v-show="!isEditing">
           <div class='header'>
             {{ todo.description }}

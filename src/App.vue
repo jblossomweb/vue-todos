@@ -1,5 +1,16 @@
 <template>
   <div id="app">
+    <transition-group name="transition-fade" duration="100" tag="div" class="error-container">
+      <div
+        v-for="(error, index) in errors"
+        v-bind:error="error"
+        v-bind:key="index"
+        class="ui floating negative message transition-fade"
+      >
+        <i class="close icon" v-on:click="dismissError(index)"></i>
+        <div class="header">{{error.message}}</div>
+      </div>
+    </transition-group>
     <todo-list
       v-bind:todos="todos"
       v-on:update-todo="updateTodo"
@@ -75,6 +86,9 @@ export default {
       } catch (error) {
         this.errors.push(error);
       }
+    },
+    dismissError(index) {
+      this.errors.splice(index, 1);
     },
   },
 };
