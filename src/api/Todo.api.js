@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-const apiPath = 'http://localhost:3004/api';
+import { apiPath } from '../constants';
 
 export default {
   get: endpoint => axios.get(apiPath + endpoint),

@@ -3,6 +3,9 @@ export const keyCodes = {
   escape: 27,
 };
 
+export const apiPath = 'http://localhost:3004/api';
+
 export default {
   keyCodes,
+  apiPath,
 };
