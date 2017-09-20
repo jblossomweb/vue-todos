@@ -95,6 +95,12 @@ button, i.edit, i.trash {
 i.save {
   padding-left: 0.3em;
 }
+.ui.pointing.secondary.menu {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  justify-content: center;
+}
 .hidden {
   position: absolute;
   top: -99999999px;
