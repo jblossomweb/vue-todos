@@ -2,7 +2,7 @@
   <div id="app">
     <todo-list
       v-bind:todos="todos"
-      v-on:complete-todo="completeTodo"
+      v-on:update-todo="updateTodo"
       v-on:delete-todo="deleteTodo"
     ></todo-list>
     <create-todo
@@ -21,29 +21,60 @@ export default {
     TodoList,
     CreateTodo,
   },
-  data() {
-    return {
-      todos: [
-        { id: 1, done: false, description: 'Pick up eggs' },
-        { id: 2, done: false, description: 'Pay electric bill' },
-        { id: 3, done: true, description: 'Create todo API' },
-      ],
-    };
+  data: () => ({
+    todos: [],
+    errors: [],
+  }),
+  props: ['service'],
+  mounted() {
+    this.getTodos();
   },
   methods: {
-    addTodo(description) {
-      this.todos.push({
-        description,
-        done: false,
-      });
+    async getTodos() {
+      try {
+        const response = await this.service.getAll();
+        this.todos = response.data;
+      } catch (error) {
+        this.errors.push(error);
+      }
     },
-    deleteTodo(todo) {
-      const todoIndex = this.todos.indexOf(todo);
-      this.todos.splice(todoIndex, 1);
+    async addTodo(description) {
+      try {
+        const response = await this.service.create({
+          description,
+          done: false,
+        });
+        if (response.data) {
+          this.todos.push(response.data);
+        } else {
+          throw new Error('server response did not confirm add');
+        }
+      } catch (error) {
+        this.errors.push(error);
+      }
     },
-    completeTodo(todo) {
-      const todoIndex = this.todos.indexOf(todo);
-      this.todos[todoIndex].done = true;
+    async deleteTodo(todo) {
+      try {
+        const response = await this.service.delete(todo.id);
+        if (response.data) {
+          const todoIndex = this.todos.indexOf(todo);
+          this.todos.splice(todoIndex, 1);
+        } else {
+          throw new Error('server response did not confirm delete');
+        }
+      } catch (error) {
+        this.errors.push(error);
+      }
+    },
+    async updateTodo(todo) {
+      try {
+        const response = await this.service.update(todo);
+        if (!response.data) {
+          throw new Error('server response did not confirm update');
+        }
+      } catch (error) {
+        this.errors.push(error);
+      }
     },
   },
 };
@@ -58,8 +89,11 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-i.edit, i.trash {
+button, i.edit, i.trash {
   cursor: pointer;
+}
+i.save {
+  padding-left: 0.3em;
 }
 .hidden {
   position: absolute;

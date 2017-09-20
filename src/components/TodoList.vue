@@ -9,7 +9,7 @@
       v-bind:todo="todo"
       v-bind:key="index"
       v-on:delete-todo="deleteTodo"
-      v-on:complete-todo="completeTodo"
+      v-on:update-todo="updateTodo"
     ></todo>
   </div>
 </template>
@@ -27,8 +27,8 @@ export default {
     deleteTodo(todo) {
       this.$emit('delete-todo', todo);
     },
-    completeTodo(todo) {
-      this.$emit('complete-todo', todo);
+    updateTodo(todo) {
+      this.$emit('update-todo', todo);
     },
   },
 };
