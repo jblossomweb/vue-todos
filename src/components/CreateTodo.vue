@@ -26,10 +26,10 @@
           </div>
           <div class='ui two button attached buttons'>
             <button class='ui basic blue button' v-on:click="sendForm()">
-              Create
+              Create <i class="save icon"></i>
             </button>
             <button class='ui basic red button' v-on:click="closeForm">
-              Cancel
+              Cancel X
             </button>
           </div>
         </div>
@@ -41,6 +41,7 @@
 <script>
 
 import { focus } from 'vue-focus';
+import { keyCodes } from '../constants';
 
 export default {
   data() {
@@ -65,12 +66,15 @@ export default {
       this.isCreating = false;
     },
     keyUpInput(e) {
-      if (e.keyCode === 13) {
+      if (e.keyCode === keyCodes.enter) {
         this.sendForm();
+      }
+      if (e.keyCode === keyCodes.escape) {
+        this.closeForm();
       }
     },
     keyUpAdd(e) {
-      if (e.keyCode === 13) {
+      if (e.keyCode === keyCodes.enter) {
         this.openForm();
       }
     },

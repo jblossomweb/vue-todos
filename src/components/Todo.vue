@@ -26,19 +26,19 @@
           >
         </div>
         <div class='ui two button attached buttons'>
-          <button class='ui basic blue button' v-on:click="hideForm" v-show="saved">
-            Close X
-          </button>
-          <button class='ui basic green button' v-on:click="hideForm" v-show="!saved">
+          <button class='ui basic blue button' v-on:click="saveForm" v-show="!saved">
             Save <i class="save icon"></i>
+          </button>
+          <button class='ui basic red button' v-on:click="cancelForm">
+            Cancel X
           </button>
         </div>
       </div>
     </div>
-    <div class='ui bottom attached green basic button' v-show="!isEditing && todo.done" disabled>
+    <div class='ui bottom attached blue basic button' v-show="!isEditing && todo.done" disabled>
       Done
     </div>
-    <div class='ui bottom attached red basic button' v-show="!isEditing && !todo.done" v-on:click="completeTodo(todo)">
+    <div class='ui bottom attached green basic button' v-show="!isEditing && !todo.done" v-on:click="completeTodo(todo)">
       Do It!
     </div>
   </div>
@@ -49,6 +49,8 @@
 import { focus } from 'vue-focus';
 import clone from 'lodash/clone';
 import isEqual from 'lodash/isEqual';
+import assign from 'lodash/assign';
+import { keyCodes } from '../constants';
 
 export default {
   props: ['todo'],
@@ -67,7 +69,11 @@ export default {
       this.savedState = clone(todo);
       this.formState = todo;
     },
-    hideForm() {
+    cancelForm() {
+      assign(this.formState, this.savedState);
+      this.isEditing = false;
+    },
+    saveForm() {
       this.isEditing = false;
       if (!this.saved) {
         this.$emit('update-todo', this.formState);
@@ -83,8 +89,10 @@ export default {
       this.$emit('update-todo', this.formState);
     },
     keyUp(e) {
-      if (e.keyCode === 13) {
-        this.hideForm();
+      if (e.keyCode === keyCodes.enter) {
+        this.saveForm();
+      } else if (e.keyCode === keyCodes.escape) {
+        this.cancelForm();
       } else {
         this.saved = isEqual(this.formState, this.savedState);
       }
