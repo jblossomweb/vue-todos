@@ -13,6 +13,9 @@
   width: 90%;
   z-index: 2;
 }
+.todo-list .todos {
+  margin-top: 1em;
+}
 button, i.edit, i.trash {
   cursor: pointer;
 }
@@ -30,7 +33,6 @@ i.save {
 }
 .transition-fade-enter,
 .transition-fade-leave-to {
-  // transform: translateY(-1em);
   transform: scale(0);
   opacity: 0;
 }

@@ -1,7 +1,7 @@
 <template>
   <transition name="transition-fade" :duration="100">
     <div class='ui centered card transition-fade'>
-      <div class="content" v-show="!isEditing">
+      <div class="content normal" v-show="!isEditing">
           <div class='header'>
             {{ todo.description }}
           </div>
@@ -14,7 +14,7 @@
             </span>
           </div>
       </div>
-      <div class="content" v-show="isEditing">
+      <div class="content editing" v-show="isEditing">
         <div class='ui form'>
           <div class='field'>
             <label>Description</label>
@@ -36,10 +36,10 @@
           </div>
         </div>
       </div>
-      <div class='ui bottom attached blue basic button' v-show="!isEditing && todo.done" disabled>
+      <div class='ui bottom attached blue basic button done' v-show="!isEditing && todo.done" disabled>
         Done
       </div>
-      <div class='ui bottom attached green basic button' v-show="!isEditing && !todo.done" v-on:click="completeTodo(todo)">
+      <div class='ui bottom attached green basic button todo' v-show="!isEditing && !todo.done" v-on:click="completeTodo(todo)">
         Do It!
       </div>
     </div>
