@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import forEach from 'lodash/forEach';
 import concat from 'lodash/concat';
-import Todo from '@/components/Todo';
+import Todo from '@/components/Todo.vue';
 import mockData from '../../mock/todos';
 
 const mockDesc = { description: 'foo' };

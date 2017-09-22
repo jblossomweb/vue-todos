@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import delay from 'lodash/delay';
-import TodoList from '@/components/TodoList';
+import TodoList from '@/components/TodoList.vue';
 import mockData from '../../mock/todos';
 
 describe('TodoList.vue', () => {

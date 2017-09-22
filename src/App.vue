@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import TodoList from './components/TodoList';
-import CreateTodo from './components/CreateTodo';
+import TodoList from './components/TodoList.vue';
+import CreateTodo from './components/CreateTodo.vue';
 
 export default {
   name: 'app',

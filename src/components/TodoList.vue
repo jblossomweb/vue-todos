@@ -38,7 +38,7 @@
 
 <script type = "text/javascript">
 
-import Todo from './Todo';
+import Todo from './Todo.vue';
 
 export default {
   props: ['todos'],

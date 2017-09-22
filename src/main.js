@@ -3,7 +3,7 @@
 import Vue from 'vue';
 import 'semantic-ui-css/semantic.min.css';
 import './style.css';
-import App from './App';
+import App from './App.vue';
 import TodoService from './services/Todo.service';
 
 Vue.config.productionTip = false;
