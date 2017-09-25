@@ -11,7 +11,7 @@ https://github.com/jblossomweb/jumpcloud-ui-assignment-public/tree/develop
 
 ``` bash
 # clone the forked repository
-git clone https://github.com/jblossomweb/jumpcloud-ui-assignment.git
+git clone https://github.com/jblossomweb/jumpcloud-ui-assignment-public.git
 
 # switch to develop branch
 git checkout develop
