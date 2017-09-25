@@ -7,7 +7,7 @@
 ### Server
 
 first, you will need to run the API as it exists on this branch:
-https://github.com/jblossomweb/jumpcloud-ui-assignment/tree/develop
+https://github.com/jblossomweb/jumpcloud-ui-assignment-public/tree/develop
 
 ``` bash
 # clone the forked repository
